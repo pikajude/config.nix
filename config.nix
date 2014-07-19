@@ -57,6 +57,7 @@
               ImageMagick = pkgs.imagemagick;
             };
             markdown = hp.callPackage ./haskell/markdown.nix {};
+            scan = hp.callPackage ./haskell/scan.nix {};
             stmLifted = hp.callPackage ./haskell/stm-lifted.nix {};
             systemFileio = hp.disableTest hp.systemFileio;
             textNormal = hp.disableTest (hp.callPackage ./haskell/text-normal.nix {});
@@ -78,9 +79,9 @@
       ] ++ (with ghcpkgs; [
         cabalInstall_1_20_0_3
         ghcMod
+        scan
         lens
         machines
-        glossBanana
         netwire
       ] ++ [
         # stuff for narwhal
