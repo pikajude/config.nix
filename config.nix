@@ -53,27 +53,11 @@
         ghcpkgs = ghcPkgsPre.override {
           extension = self: hp: {
             airbrake = hp.callPackage ./haskell/airbrake.nix {};
-            cairo = hp.callPackage ./haskell/cairo.nix {
-              inherit (pkgs) cairo;
-            };
-            glossBanana = if hp.gloss == null then null else
-              overrideCabal hp (hp.callPackage ./haskell/gloss-banana.nix {
-                reactiveBanana = self.reactiveBanana_0_7_1_3;
-              }) (a: b: {
-                jailbreak = true;
-              });
-            helm = hp.callPackage ./haskell/helm.nix {};
             hs_imagemagick = hp.callPackage ./haskell/imagemagick.nix {
               ImageMagick = pkgs.imagemagick;
             };
             markdown = hp.callPackage ./haskell/markdown.nix {};
-            pango = hp.callPackage ./haskell/pango.nix {
-              inherit (pkgs) pango cairo;
-              hsCairo = self.cairo;
-            };
-            reactiveBanana_0_7_1_3 = hp.callPackage ./haskell/reactive-banana-0.7.1.3.nix {};
             stmLifted = hp.callPackage ./haskell/stm-lifted.nix {};
-            sdl2 = hp.callPackage ./haskell/sdl2.nix {};
             systemFileio = hp.disableTest hp.systemFileio;
             textNormal = hp.disableTest (hp.callPackage ./haskell/text-normal.nix {});
             thyme = overrideCabal hp hp.thyme (a: b: {
